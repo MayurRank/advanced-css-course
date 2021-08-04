@@ -1,0 +1,100 @@
+.container {
+  max-width: 120rem;
+  margin: 8rem auto;
+  background-color: var(--color-grey-light-2);
+  box-shadow: var(--shadow-dark);
+
+  min-height: 50rem;
+
+  @media only screen and (max-width: $bp-largest) {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.header {
+  font-size: 1.4rem;
+  height: 7rem;
+  background-color: #fff;
+  border-bottom: var(--line);
+
+  display: flex;
+  justify-content: space-between; // Horizontal align with equal space between
+  align-items: center; // Vertical align center
+
+  @media only screen and (max-width: $bp-smallest) {
+    flex-wrap: wrap; // Allow multi-line, search bar will comes in new line
+    align-content: space-around; // logo, user-icons and all + search bar will have equal around space
+    height: 11rem;
+  } 
+}
+
+.content {
+  display: flex;
+
+  @media only screen and (max-width: $bp-medium) {
+    flex-direction: column;
+  }
+}
+
+.sidebar {
+  background-color: var(--color-grey-dark-1);
+
+  flex: 0 0 18%; // grow, shrink and 20% width
+
+  // Navigation link shold be top and legal text should be bottom, so we can do it with flex
+  display: flex;
+  flex-direction: column; // Change main axis from Hirizontal to Vertial, so that we can use [justify content: space-between]
+  justify-content: space-between;
+  
+}
+
+
+.hotel-view {
+  flex: 1; // grow here will take rest of the available (80%) space
+  background-color: #fff;
+}
+
+.detail {
+  font-size: 1.4rem;
+  display: flex;
+  padding: 4.5rem;
+  background-color: var(--color-grey-light-1);
+  border-bottom: var(--line);
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    flex-direction: column;
+  }
+}
+
+.description {
+  background-color: #fff;
+  box-shadow: var(--shadow-light);
+  padding: 3rem;
+  flex: 0 0 60%;
+  margin-right: 4.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-right: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    margin-right: 0;
+    margin-bottom: 3rem;
+  }
+}
+
+.user-reviews {
+  flex: 1;
+
+  // This is to align [show all] button to center
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

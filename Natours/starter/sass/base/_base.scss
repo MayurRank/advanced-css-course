@@ -1,0 +1,48 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* Here by using % we are allowing user to set font size, because if we use 10px hard-coded then use won't have freedom to change font size and if user changes fon't size, it will break the responsive view because this root font size getting referenced by all rem */
+  font-size: 62.5%; // This defines what 1rem is  | 1 rem = 10px; 10px/16px = 62.5%
+
+  // NOTE: always start from bigger to small declaration, so like here put bigger breakpoint declaration on top,
+  // Because if width is < 900 and if put respond(tab-land) [1200] after respond(tab-port) [900], respond(tab-land) will take presedence and that's wrong, we actually want to apply 900 one
+  // But if we follow mobile-first approach then it's opposite, we should start with smaller to large order
+  @include respond(tab-land) { // width < 1200?
+      font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
+  }
+
+  @include respond(tab-port) { // width < 900?
+      font-size: 50%; //1 rem = 8px, 8/16 = 50%
+  }
+
+
+  // We dont need this because font-size: 50%; from respond(tab-port) will also apply if width is < 900
+  // @include respond(phone) { // width < 600?
+  //   font-size: 50%;
+  // }
+  
+  @include respond(big-desktop) {
+      font-size: 75%; //1rem = 12, 12/16
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) { // width < 900?
+    padding: 0;
+  }
+}
+
+// Select text style change
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

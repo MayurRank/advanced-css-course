@@ -1,0 +1,51 @@
+.header {
+  height: 85vh;
+  background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero-small.jpg);
+  background-size: cover; /* It will try to cover full image in container */
+  background-position: top; /* Image position will be top as priority */
+  position: relative;
+  --webkit-clip-path:: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* a, b, c, d points will move as per params in x or y axis */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* a, b, c, d points will move as per params in x or y axis */
+
+  // If clipath is supported
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    height: 95vh;
+  }
+
+  // 192 dots per inch, standard mac resolution (standard high resolution screens)
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), // This
+        only screen and (-webkit-min-device-pixel-ration: 2) and (min-width: 37.5em), // OR px ration os 2x
+        only screen and (min-width: 125em) { // , is or in media query | // If density is low and screen width is 2000px, then also larger image make sense  2000 / 16 = 125
+    background-image: linear-gradient(to right bottom, 
+      rgba($color-primary-light, 0.8), 
+      rgba($color-primary-dark, 0.8)), 
+      url(../img/hero.jpg);
+  }
+
+  @include respond(phone) { // width < 600?
+    --webkit-clip-path:: polygon(0 0, 100% 0, 100% 85vh, 0 100%); 
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%); 
+  }
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+  
+  &__logo {
+    height: 35px; /* Using height width will be auto adjust for imgae */
+  }
+  
+  &__text-box {
+    position: absolute;
+    /* Here top and left are in relation with parent element */
+    top: 40%;
+    left: 50%;
+    /* This is in relation with box itself, so box itself will move 50% top and left of itself size */
+    transform: translate(-50%, -50%); 
+    text-align: center;
+  }
+}
